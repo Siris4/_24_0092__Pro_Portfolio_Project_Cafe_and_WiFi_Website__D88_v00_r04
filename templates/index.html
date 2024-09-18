@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cafe Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main-wrapper">
+
+        <!-- Left Column: Filters -->
+        <section class="filters-column">
+            <h2>Filters</h2>
+            <div class="filter-section">
+                <h3>Productivity</h3>
+                <label><input type="checkbox" id="wifi"> Wi-Fi</label><br>
+                <label><input type="checkbox" id="sockets"> Sockets</label><br>
+                <label><input type="checkbox" id="calls"> Can Take Calls</label><br>
+                <!-- Add more filters here -->
+            </div>
+            <!-- Add other sections like Community, Service, and Space here -->
+        </section>
+
+        <!-- Middle Column: Cafe Listings -->
+        <section class="cafes-column">
+            <h2>Our Recommended Cafes</h2>
+            <div class="cafes-list">
+                {% for cafe in cafes %}
+                    <div class="cafe-card">
+                        <img src="{{ cafe.img_url }}" alt="{{ cafe.name }}">
+                        <div class="cafe-details">
+                            <h3>{{ cafe.name }}</h3>
+                            <p>Location: {{ cafe.location }}</p>
+                            <p>Seats: {{ cafe.seats }}</p>
+                            <p>Coffee Price: {{ cafe.coffee_price }}</p>
+                            <a href="{{ cafe.map_url }}" target="_blank">View on Map</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Right Column: Map -->
+        <section class="map-column">
+            <h2>Map</h2>
+            <div id="map">
+                <iframe src="https://www.google.com/maps/embed/v1/view?key=YOUR_API_KEY&center=51.5074,-0.1278&zoom=10" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
